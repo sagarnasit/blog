@@ -33,6 +33,10 @@ const Layout = ({ children }) => {
             > div {
               margin-top: 0;
             }
+            /* fix-gatsby-remark plugin issue with extra space above image */
+            .gatsby-resp-image-background-image {
+              display: none !important;
+            }
           }
 
           h1,
