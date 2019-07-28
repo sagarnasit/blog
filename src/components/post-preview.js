@@ -35,7 +35,14 @@ const PostPreview = ({ post }) => (
       />
     </Link>
     <div>
-      <h3>{post.title}</h3>
+      <Link
+        to={post.slug}
+        css={css`
+          text-decoration: none;
+        `}
+      >
+        <h3>{post.title}</h3>
+      </Link>
       <p>{post.excerpt}</p>
       <ReadLink to={post.slug}>Read More &rarr;</ReadLink>
     </div>

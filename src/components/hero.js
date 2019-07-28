@@ -6,7 +6,7 @@ import { Link, graphql, useStaticQuery } from 'gatsby';
 const ImageBackground = styled(BackgroundImage)`
   background-position: top 20% center;
   background-size: cover;
-  height: 50vw;
+  height: 30vh;
   + * {
     margin-top: 0;
   }
