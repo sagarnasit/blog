@@ -4,49 +4,61 @@ import Image from 'gatsby-image';
 import { Link } from 'gatsby';
 import ReadLink from './read-link';
 
-const PostPreview = ({ post }) => (
-  <article
-    css={css`
-      border-bottom: 1px solid #ddd;
-      margin-top: 0;
-      display: flex;
-      padding-bottom: 1rem;
+const PostPreview = ({ post }) => {
+  let postDate = new Date(post.date);
+  let fromatedDate = `${postDate.getDay()}-${postDate.getMonth()}-${postDate.getFullYear()}`;
 
-      :first-of-type {
-        margin-top: 1rem;
-      }
-    `}
-  >
-    <Link
-      to={post.slug}
+  return (
+    <article
       css={css`
-        margin: 1rem 1rem 0 0;
-        width: 100px;
+        border-bottom: 1px solid #ddd;
+        margin-top: 0;
+        display: flex;
+        padding-bottom: 1rem;
+
+        :first-of-type {
+          margin-top: 1rem;
+        }
+
+        .post-date {
+          font-size: 0.7rem;
+          letter-spacing: 0.05rem;
+          opacity: 0.5;
+        }
       `}
     >
-      <Image
-        fluid={post.image.sharp.fluid}
-        css={css`
-          * {
-            margin-top: 0;
-          }
-        `}
-        alt={post.title}
-      />
-    </Link>
-    <div>
       <Link
         to={post.slug}
         css={css`
-          text-decoration: none;
+          margin: 1rem 1rem 0 0;
+          width: 100px;
         `}
       >
-        <h3>{post.title}</h3>
+        <Image
+          fluid={post.image.sharp.fluid}
+          css={css`
+            * {
+              margin-top: 0;
+            }
+          `}
+          alt={post.title}
+        />
       </Link>
-      <p>{post.excerpt}</p>
-      <ReadLink to={post.slug}>Read More &rarr;</ReadLink>
-    </div>
-  </article>
-);
+      <div>
+        <Link
+          to={post.slug}
+          css={css`
+            text-decoration: none;
+          `}
+        >
+          <h3>{post.title}</h3>
+        </Link>
+        <span className="post-date">{fromatedDate}</span>
+        <p>{post.excerpt}</p>
+        <ReadLink to={post.slug}>Read More &rarr;</ReadLink>
+      </div>
+    </article>
+  );
+};
 
 export default PostPreview;

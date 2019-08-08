@@ -27,11 +27,18 @@ const Header = () => (
       border-bottom: 1px solid #ddd;
       display: flex;
       justify-content: space-between;
-      padding: 0.5rem calc((100vw - 550px - 0.5rem) / 2);
+      padding: 1.5rem calc((100vw - 800px - 0.5rem) / 2);
+      box-shadow: 1px 2px 18px rgba(0, 0, 0, 0.1);
     `}
   >
-    <NavLink to="/" fontWeight="bold">
-      My Blog
+    <NavLink to="/">
+      <span
+        css={css`
+          font-size: 1.3rem;
+        `}
+      >
+        Sagar Nasit
+      </span>
     </NavLink>
     <nav
       css={css`
