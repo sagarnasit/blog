@@ -1,6 +1,5 @@
 import React from 'react';
 import { css } from '@emotion/core';
-import Image from 'gatsby-image';
 import { Link } from 'gatsby';
 import ReadLink from './read-link';
 
@@ -9,42 +8,9 @@ const PostPreview = ({ post }) => {
   let fromatedDate = `${postDate.getDay()}-${postDate.getMonth()}-${postDate.getFullYear()}`;
 
   return (
-    <article
-      css={css`
-        border-bottom: 1px solid #ddd;
-        margin-top: 0;
-        display: flex;
-        padding-bottom: 1rem;
-
-        :first-of-type {
-          margin-top: 1rem;
-        }
-
-        .post-date {
-          font-size: 0.7rem;
-          letter-spacing: 0.05rem;
-          opacity: 0.5;
-        }
-      `}
-    >
-      <Link
-        to={post.slug}
-        css={css`
-          margin: 1rem 1rem 0 0;
-          width: 100px;
-        `}
-      >
-        <Image
-          fluid={post.image.sharp.fluid}
-          css={css`
-            * {
-              margin-top: 0;
-            }
-          `}
-          alt={post.title}
-        />
-      </Link>
+    <article css={cssComp}>
       <div>
+        <span className="post-date">{fromatedDate}</span>
         <Link
           to={post.slug}
           css={css`
@@ -53,12 +19,29 @@ const PostPreview = ({ post }) => {
         >
           <h3>{post.title}</h3>
         </Link>
-        <span className="post-date">{fromatedDate}</span>
-        <p>{post.excerpt}</p>
-        <ReadLink to={post.slug}>Read More &rarr;</ReadLink>
+        <p className="post-preview__excerpt">{post.excerpt}</p>
+        <ReadLink to={post.slug}>Continue... &rarr;</ReadLink>
       </div>
     </article>
   );
 };
 
+// all css goes here
+const cssComp = css`
+  border-bottom: 1px solid #ddd;
+  margin-top: 0;
+  display: flex;
+  padding-bottom: 1rem;
+  margin-top: 1rem;
+
+  .post-date {
+    font-size: 0.7rem;
+    letter-spacing: 0.05rem;
+    opacity: 0.5;
+  }
+
+  .post-preview__excerpt {
+    margin-top: 0.3rem;
+  }
+`;
 export default PostPreview;
