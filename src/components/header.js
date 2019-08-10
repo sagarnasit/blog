@@ -4,6 +4,10 @@ import { css } from '@emotion/core';
 import { Link, graphql } from 'gatsby';
 import Image from 'gatsby-image';
 
+import githubIcon from '../../static/github.png';
+import twitterIcon from '../../static/twitter.png';
+import linkedinIcon from '../../static/linkedin.png';
+
 const NavLink = styled(Link)`
   color: #222;
   font-size: size 1rem;
@@ -28,17 +32,26 @@ const Header = props => {
         <Image className="logo" fluid={props.logo} width={100} />
         <span className="header-site-name">Sagar Nasit</span>
       </NavLink>
-      <nav
-        css={css`
-          margin-top: 0;
-        `}
-      >
-        <NavLink activeClassName="current-page" to="/">
-          Home
-        </NavLink>
-        <NavLink activeClassName="current-page" to="/about">
-          About
-        </NavLink>
+      <nav>
+        <a className="social-link" target="_blank" href="github.com/sagarnasit">
+          <img className="social-media-icon" src={githubIcon} />
+        </a>
+
+        <a
+          className="social-link"
+          target="_blank"
+          href="twitter.com/sagarnasit"
+        >
+          <img className="social-media-icon" src={twitterIcon} />
+        </a>
+
+        <a
+          className="social-link"
+          target="_blank"
+          href="linkedin.com/sagarnasit"
+        >
+          <img className="social-media-icon" src={linkedinIcon} />
+        </a>
       </nav>
     </header>
   );
@@ -62,7 +75,7 @@ const CSS = css`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem calc((100vw - 800px - 0.5rem) / 2);
+  padding: 1rem calc((100vw - 800px - 0.5rem) / 2);
   box-shadow: 1px 2px 18px rgba(0, 0, 0, 0.1);
 
   .logo {
@@ -77,6 +90,18 @@ const CSS = css`
   .header-site-name {
     font-size: 1.2rem;
     margin-left: 0.3rem;
+  }
+
+  .social-media-icon {
+    width: 30px;
+  }
+
+  .social-link {
+    margin-right: 0.5rem;
+
+    :last-of-type {
+      margin: 0;
+    }
   }
 `;
 export default Header;
