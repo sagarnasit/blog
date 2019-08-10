@@ -1,7 +1,12 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
-import { Link } from 'gatsby';
+import { Link, graphql } from 'gatsby';
+import Image from 'gatsby-image';
+
+import githubIcon from '../../static/github.png';
+import twitterIcon from '../../static/twitter.png';
+import linkedinIcon from '../../static/linkedin.png';
 
 const NavLink = styled(Link)`
   color: #222;
@@ -20,39 +25,87 @@ const NavLink = styled(Link)`
     margin-right: 0;
   }
 `;
-const Header = () => (
-  <header
-    css={css`
-      background: #eee;
-      border-bottom: 1px solid #ddd;
-      display: flex;
-      justify-content: space-between;
-      padding: 1.5rem calc((100vw - 800px - 0.5rem) / 2);
-      box-shadow: 1px 2px 18px rgba(0, 0, 0, 0.1);
-    `}
-  >
-    <NavLink to="/">
-      <span
-        css={css`
-          font-size: 1.3rem;
-        `}
-      >
-        Sagar Nasit
-      </span>
-    </NavLink>
-    <nav
-      css={css`
-        margin-top: 0;
-      `}
-    >
-      <NavLink activeClassName="current-page" to="/">
-        Home
+const Header = props => {
+  return (
+    <header css={CSS}>
+      <NavLink to="/" className="header-logo-link">
+        <Image className="logo" fluid={props.logo} width={100} />
+        <span className="header-site-name">Sagar Nasit</span>
       </NavLink>
-      <NavLink activeClassName="current-page" to="/about">
-        About
-      </NavLink>
-    </nav>
-  </header>
-);
+      <nav>
+        <a
+          className="social-link"
+          target="_blank"
+          href="http://github.com/sagarnasit"
+        >
+          <img className="social-media-icon" src={githubIcon} />
+        </a>
 
+        <a
+          className="social-link"
+          target="_blank"
+          href="http://twitter.com/sagarnasit"
+        >
+          <img className="social-media-icon" src={twitterIcon} />
+        </a>
+
+        <a
+          className="social-link"
+          target="_blank"
+          href="http://linkedin.com/in/sagar-nasit-894927133"
+        >
+          <img className="social-media-icon" src={linkedinIcon} />
+        </a>
+      </nav>
+    </header>
+  );
+};
+
+export const query = graphql`
+  query {
+    file(relativePath: { eq: "logo.png" }) {
+      childImageSharp {
+        fluid {
+          src
+        }
+      }
+    }
+  }
+`;
+
+const CSS = css`
+  background: #eee;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem calc((100vw - 800px - 0.5rem) / 2);
+  box-shadow: 1px 2px 18px rgba(0, 0, 0, 0.1);
+
+  .logo {
+    display: inline-block;
+    width: 75px;
+  }
+  .header-logo-link {
+    display: flex;
+    align-items: center;
+  }
+
+  .header-site-name {
+    font-size: 1.2rem;
+    margin-left: 0.3rem;
+  }
+
+  .social-media-icon {
+    width: 30px;
+  }
+
+  .social-link {
+    margin-right: 0.5rem;
+
+    :last-of-type {
+      margin: 0;
+    }
+  }
+`;
 export default Header;

@@ -5,7 +5,8 @@ import Header from './header';
 import useSiteMetaData from '../hooks/useSiteMetaData';
 
 const Layout = ({ children }) => {
-  const { title, description } = useSiteMetaData();
+  const { title, description, logo } = useSiteMetaData();
+
   return (
     <>
       <Global
@@ -15,12 +16,9 @@ const Layout = ({ children }) => {
             margin: 0;
           }
 
-          * + * {
-            margin-top: 1rem;
-          }
-
           html,
           body {
+            background-color: #fdfafd;
             margin: 0;
             color: #555;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
@@ -68,7 +66,7 @@ const Layout = ({ children }) => {
         <meta name="descriptoin" content={description} />
       </Helmet>
 
-      <Header />
+      <Header logo={logo} />
       <main
         css={css`
           margin: 2rem auto 4rem;
