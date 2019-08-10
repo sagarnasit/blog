@@ -33,14 +33,18 @@ const Header = props => {
         <span className="header-site-name">Sagar Nasit</span>
       </NavLink>
       <nav>
-        <a className="social-link" target="_blank" href="github.com/sagarnasit">
+        <a
+          className="social-link"
+          target="_blank"
+          href="http://github.com/sagarnasit"
+        >
           <img className="social-media-icon" src={githubIcon} />
         </a>
 
         <a
           className="social-link"
           target="_blank"
-          href="twitter.com/sagarnasit"
+          href="http://twitter.com/sagarnasit"
         >
           <img className="social-media-icon" src={twitterIcon} />
         </a>
@@ -48,7 +52,7 @@ const Header = props => {
         <a
           className="social-link"
           target="_blank"
-          href="linkedin.com/sagarnasit"
+          href="http://linkedin.com/in/sagar-nasit-894927133"
         >
           <img className="social-media-icon" src={linkedinIcon} />
         </a>
